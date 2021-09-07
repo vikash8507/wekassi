@@ -13,3 +13,4 @@ sqlparse==0.4.1
 toml==0.10.2
 django_heroku
 gunicorn
+django-cors-headers
