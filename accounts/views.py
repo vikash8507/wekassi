@@ -37,6 +37,8 @@ class LoginAPI(KnoxLoginView):
         serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
+        if user.role != request.data.get('role', ""):
+            return Response({"error": "You can not be able to login here"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
 
