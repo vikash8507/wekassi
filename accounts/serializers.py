@@ -8,18 +8,19 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name')
+        fields = ('id', 'email', 'first_name', 'last_name', 'role')
 
 # Register Serializer
 
 
 class RegisterSerializer(serializers.ModelSerializer):
     ROLES = (
+        ("admin", "Admin"),
         ('driver', "Driver"),
         ('company', "Company"),
-        ('user', 'User')
+        ('travel_agency', 'Travel Agency')
     )
-    
+
     first_name = serializers.CharField(max_length=30, required=True)
     last_name = serializers.CharField(max_length=30, required=True)
     role = serializers.ChoiceField(choices=ROLES, required=True)
