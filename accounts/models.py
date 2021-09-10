@@ -38,14 +38,16 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     ROLES = (
+        ("admin", "Admin"),
         ('driver', "Driver"),
         ('company', "Company"),
-        ('user', 'User')
+        ('travel_agency', 'Travel Agency')
     )
-    
+
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    role = models.CharField(_('user role'), max_length=25, choices=ROLES, default='user')
+    role = models.CharField(_('user role'), max_length=25,
+                            choices=ROLES, default='user')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
